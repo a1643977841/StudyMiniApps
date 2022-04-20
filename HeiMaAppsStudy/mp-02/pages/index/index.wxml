@@ -1,0 +1,77 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- <view class="userinfo">
+    <block wx:if="{{canIUseOpenData}}">
+      <view class="userinfo-avatar" bindtap="bindViewTap">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <open-data type="userNickName"></open-data>
+    </block>
+    <block wx:elif="{{!hasUserInfo}}">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view> -->
+  <!-- <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view> -->
+  <!-- 在vue里面叫插值表达式，在微信里面叫Mustache语法 -->
+  <view>{{ info }}</view>
+  <image src="{{imgSrc}}" mode="widthFix"></image>
+  <!-- 三元运算符 -->
+  <view>{{ randomNum1 >= 5? "数字大于等于5" : "数字小于5" }}</view>
+  <!-- 算术运算 -->
+  <view class="" hover-class="none" hover-stop-propagation="false">
+    {{randomNum2 * 100}}
+  </view>
+  <!-- 事件绑定 -->
+  <button type="primary" bindtap="btnTapHandler">按钮</button>
+  <view>---------------------------</view>
+  <button type="primary" bindtap="countChange">+1</button>
+  <view>---------------------------</view>
+  <button type="primary" bindtap="btnTapHandler2" data-info="{{2}}">数据传参</button>
+  <view>-------------input输入框--------------</view>
+  <input bindinput="inputHandler">
+    
+  </input>
+  <view>-------------输入框和data之间的数据同步--------------</view>
+  <input value="{{msg}}" bindinput="iptHandler">
+    
+  </input>
+  <!-- 条件渲染 -->
+  <view>-------------条件渲染--------------</view>
+  <view wx:if="{{type}}">男</view>
+  <view wx:if="{{!type}}">女</view>
+  <button type="primary" bindtap="changeType">切换男女</button>
+  <view>-------------结合block使用--------------</view>
+  <!-- 注意：block并不是一个组件，他只是一个包裹性质的容器，不会在页面中做任何渲染。 -->
+  <block wx:if="{{true}}">
+    <view>view1</view>
+    <view>view2</view>
+    <view>view3</view>
+  </block>
+  <view>-------------hidden也可以直接隐藏元素--------------</view>
+  <!-- true隐藏，false显示 -->
+  <!-- hidden是切换样式的方式。wx:if是动态创建和移除元素 -->
+  <!-- 频繁切换时候，建议使用hidden，控制条件复杂时，建议使用wx:if搭配wx:elif、wx:else 进行展示和切换 -->
+  <view hidden="{{false}}">
+    hidden隐藏
+  </view>
+  <view>-------------列表渲染wx:for--------------</view>
+  <view wx:for="{{array}}">
+    索引是：{{index}}，当前项是：{{item}}
+  </view>
+  <!-- 手动指定 -->
+  <view wx:for="{{array}}" wx:for-index="idx" wx:for-item="itemName">
+    手动指定：索引是：{{idx}}，当前项是：{{itemName}}
+  </view>
+  <!-- 列表渲染，类似于vue中的:key,小程序渲染时，也建议为渲染出来的添加唯一key，从而提高渲染效率 -->
+  <view wx:for="{{userList}}" wx:for-index="idx" wx:for-item="itemName" wx:key="id">
+    手动指定：索引是：{{idx}}，当前项是：{{itemName.id}},{{itemName.name}}
+  </view>
+</view>
