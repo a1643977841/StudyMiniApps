@@ -1,1 +1,76 @@
 /* pages/list/list.wxss */
+/* 后代选择器 */
+.view1 view{
+    width: 100px;
+    height: 100px;
+    /* 居中 */
+    text-align: center;
+    /* 行高 */
+    line-height: 100px;
+}
+.view1 view:nth-child(1){
+    background-color: lightgreen;
+}
+.view1 view:nth-child(2){
+    background-color: lightblue;
+}
+.view1 view:nth-child(3){
+    background-color: lightpink;
+}
+/* 类名选择器 */
+.view1 {
+    /* 水平布局 */
+    display: flex;
+    /* 分散 */
+    justify-content: space-around;
+}
+
+
+
+.scroll-view1 view{
+    width: 100px;
+    height: 100px;
+    /* 居中 */
+    text-align: center;
+    /* 行高 */
+    line-height: 100px;
+}
+.scroll-view1 view:nth-child(1){
+    background-color: lightgreen;
+}
+.scroll-view1 view:nth-child(2){
+    background-color: lightblue;
+}
+.scroll-view1 view:nth-child(3){
+    background-color: lightpink;
+}
+
+.scroll-view1 {
+    border: 1px solid red;
+    width: 100px;
+    height: 150px;
+}
+
+.swiper1 {
+    height: 150px;
+}
+
+
+.item {
+    height: 100%;
+    line-height: 150px;
+    text-align: center;
+}
+swiper-item:nth-child(1) .item {
+    background-color: lightgreen;
+}
+swiper-item:nth-child(2) .item {
+    background-color: lightblue;
+}
+swiper-item:nth-child(3) .item {
+    background-color: lightpink;
+}
+
+.image1 {
+    border: 1px solid red;
+}
