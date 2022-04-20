@@ -1,4 +1,6 @@
 /**index.wxss**/
+/* 导入log的wxss样式 */
+@import "../logs/logs.wxss";
 .userinfo {
   display: flex;
   flex-direction: column;

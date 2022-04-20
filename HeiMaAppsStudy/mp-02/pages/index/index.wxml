@@ -74,4 +74,57 @@
   <view wx:for="{{userList}}" wx:for-index="idx" wx:for-item="itemName" wx:key="id">
     手动指定：索引是：{{idx}}，当前项是：{{itemName.id}},{{itemName.name}}
   </view>
+  <!-- wxss和css类似 rpx是微信小程序独有的尺寸单位 -->
+  <!-- 
+    rpx的实现原理非常简单：鉴于不同设备屏幕的大小不同，为了实现屏幕的自动适配， rpx 把所有设备的屏幕， 在宽度上 等分为 750 份（即： 当前屏幕的总宽度为 750rpx750rpx） 
+    在较小的设备上，1rpx所代表的宽度较小。反之。
+    小程序在不同设备上运行的时候，会自动把rpx 的样式单位换算成对应的像素单位来渲染，从而实现屏幕适配。
+    rpx与 px 之间的换算:
+      在 iPhone6 上，屏幕宽度为 375px375px，共有 750 个物理像素 ，等分为 750rpx 。
+      则750rpx = 375px = 750物理像素
+      1rpx = 0.5px = 1物理像素
+      官方建议：开发微信小程序时，设计师可以用iPhone6 作为 视
+      开发举例：在 iPhone6 上如果要绘制宽100px，高20px 的盒子，换算成 rpx 单位，宽高分别为 200rpx 和 40rpx 。
+    什么是样式导入：
+      使用WXSS提供的@import语法，可以导入外联的样式表
+      @import "../logs/logs.wxss"
+  -->
+
+  <!-- app.json详细解说-->
+  <!-- 
+    pages:记录当前小程序所有页面的存放路径
+    window:全局设置小程序窗口的外观
+      常用配置：
+        navigationBarTitleText String 字符串 导航栏标题文字内容
+        navigationBarBackgroundColor HexColor ##000000 导航栏背景颜色
+        navigationBarTextStyle String white 导航栏标题颜色，仅支持black/white
+        backgroundColor HexColor #ffffff 窗口的背景色
+        backgroundTextStyle String dark 下拉 loading 的样式，仅支持 darkdark/light
+        enablePullDownRefresh Boolean false 是否全局开启下拉刷新
+        onReachBottomDistance Number 50 页面上拉触底事件触发是距页面底部的距离，单位为px
+    tabBar:设置小程序底部的 tabBar 效果
+      分为底部tabBar和顶部tabBar
+      tabBar中只能配置 最少2个、最多5个tab页
+      当渲染顶部tabBar时， 不显示iconicon，
+      组成部分：
+        backgroundColor：tabBar的背景色
+        selectedIconPath ：选中时的图片路径
+        borderStyle：tabBar上边框的颜色
+        iconPath ：未选中时的图片路径
+        selectedColor：tab上的文字选中时的颜色
+        color：tab 上文字的默认（未选中）颜色
+      节点配置项：
+        position String  否 bottom tabBar的位置，仅支持 bottombottom/top
+        borderStyle String 否 tabBar上边框的颜色，仅支持 blackblack/white
+        color HexColor 否 tab上文字的默认(未选中) 颜色
+        selectedColor HexColor 否 tab上的文字选中时的颜色
+        backgroundColor HexColor 否 tabBar的背景色
+        list Array 是 tab页签的列表，最少2个最多5个
+      每个tab项的配置选项：
+        pagePath String 是 页面路径，必须在pages中
+        text String 是 tab上显示的文字
+        iconPath String 否 未选中时 的图标路径；当 postion 为 top 时，不显示 icon
+        selectedIconPath 否 
+    tyle:是否启用新版的组件样式
+   -->
 </view>

@@ -1,0 +1,7 @@
+<!--pages/home/home.wxml-->
+<!-- 网络请求 -->
+<view>------------网络请求------------</view>
+<!-- 在页面加载时候请求数据 -->
+<button type="primary" bindtap="getRequest">GET请求</button>
+<view>-----------------------</view>
+<button type="primary" bindtap="postRequest">POST请求</button>
