@@ -1,0 +1,19 @@
+<!--pages/home/home.wxml-->
+<text>pages/home/home.wxml</text>
+<!-- 跳转到message页面 -->
+<navigator url="/pages/message/message" open-type="switchTab">导航到消息页面</navigator>
+<!-- 跳转到非tabBar页面 open-type可以省略-->
+<navigator url="/pages/info/info" >导航到非tabBar页面</navigator>
+<!-- 声明式跳转携带参数-->
+<navigator url="/pages/info/info?name=lh&age=23" >携带参数</navigator>
+<!-- 
+    后退导航(在info页面) 
+    delta 的值必须是 数字 ，表示要后退的层级
+    open-type 必须为"navigateBack"
+    如果只是后退一个页面，delta可以省略，因为delta默认值为1
+-->
+<navigator open-type="navigateBack" delta="1">返回上一页</navigator>
+<view>-------------编程式导航-------------</view>
+<button bindtap="goToMessage">跳转到message页面</button>
+<button bindtap="goToInfo">跳转到非tabBar页面</button>
+<button bindtap="goToInfoParme">携带参数</button>
