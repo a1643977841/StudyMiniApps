@@ -1,2 +1,13 @@
 <!--pages/message/message.wxml-->
-<text>pages/message/message.wxml</text>
+<!-- <text>pages/message/message.wxml</text> -->
+<!-- 测试store -->
+<view>
+  测试store
+</view>
+<view>
+  {{numA}} + {{numB}} = {{sum}}
+</view>
+<van-button type="primary" bindtap="btnHandler1" data-step="{{1}}">numA + 1</van-button>
+<van-button type="danger"bindtap="btnHandler1" data-step="{{-1}}">numB + 1</van-button>
+<!-- 测试组件中使用store -->
+<my-numbers></my-numbers>

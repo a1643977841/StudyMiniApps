@@ -7,4 +7,11 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
+page {
+  /* 定制van-weapp样式 */
+  /* --button-danger-background-color: #C00000;
+  --button-danger-border-color: #D60000;
+  --button-primary-background-color: #13A7A0;
+  --button-primary-border-color: #15B4AA; */
+}

@@ -1,2 +1,17 @@
 <!--pages/home/home.wxml-->
 <text>pages/home/home.wxml</text>
+<van-button>van-button</van-button>
+<van-button type="primary">van-button</van-button>
+<van-button type="info">van-button</van-button>
+<van-button type="warning">van-button</van-button>
+<van-button type="danger">van-button</van-button>
+<!-- 测试自定义主题 -->
+<view>自定义主题</view>
+<van-button type="danger">van-button</van-button>
+<!-- 测试propromise -->
+<view>测试promise</view>
+<van-button type="primary" bindtap="getInfo">getInfo</van-button>
+<!-- 测试store -->
+<view>测试store</view>
+
+

@@ -1,4 +1,6 @@
 // pages/message/message.js
+import { store } from '../../store/store'
+import { createStoreBindings } from 'mobx-miniprogram-bindings'
 Page({
 
   /**
@@ -12,9 +14,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.storeBindings = createStoreBindings(this, {
+      store: store,
+      fields: ['numA', 'numB', 'sum'],
+      actions: ['updateNumA']
+    })
   },
-
+  btnHandler1(e) {
+    console.log(e)
+    // 调用全局共享属性(store)
+    this.updateNumA(e.target.dataset.step)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

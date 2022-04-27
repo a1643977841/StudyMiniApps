@@ -1,4 +1,6 @@
 // pages/home/home.js
+import { store } from '../../store/store'
+import { createStoreBindings } from 'mobx-miniprogram-bindings'
 Page({
 
   /**
@@ -7,12 +9,25 @@ Page({
   data: {
 
   },
-
+  /**
+   * promise
+   */
+  async getInfo() {
+    const {data: res} = await wx.p.request({
+      methot: 'GET',
+      url: 'https://www.escook.cn/api/get',
+      data: {
+        name: 'lh',
+        age: 20
+      }
+    })
+    console.log(res)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
