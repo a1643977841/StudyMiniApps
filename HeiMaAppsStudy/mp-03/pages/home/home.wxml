@@ -17,3 +17,4 @@
 <button bindtap="goToMessage">跳转到message页面</button>
 <button bindtap="goToInfo">跳转到非tabBar页面</button>
 <button bindtap="goToInfoParme">携带参数</button>
+<view class="box"></view>

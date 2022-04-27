@@ -115,7 +115,8 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+        // 通过onReachBottomDistance属性配置小程序触底距离，小程序默认的触底距离是50px
+        console.log("触发了触底事件")
     },
 
     /**

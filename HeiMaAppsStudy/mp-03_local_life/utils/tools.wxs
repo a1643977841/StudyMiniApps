@@ -1,0 +1,14 @@
+/**
+ * 为手机号添加-
+ * @param phone
+ */
+function splitPhone(phone) {
+    if(phone.length != 11) return phone
+    var arr = phone.split('')
+    arr.splice(3, 0, '-')
+    arr.splice(8, 0, '-')
+    return  arr.join('')
+}
+module.exports = {
+    splitPhone: splitPhone
+}
