@@ -1,3 +1,21 @@
 <!--pages/home/home.wxml-->
 <text>pages/home/home.wxml</text>
-<my-test></my-test>
+<!-- 测试组件 -->
+<my-test max="50" max1="30"></my-test>
+<!-- 测试监听器 -->
+<my-test2></my-test2>
+<!-- 测试案例 -->
+<view>-------测试案例--------</view>
+<my-test3></my-test3>
+<!-- 测试插槽 -->
+<view>-------测试插槽--------</view>
+<my-test4>
+  <view slot="before">这是通过插槽填充的内容</view>
+  <view slot="after">这是通过插槽填充的内容</view>
+</my-test4>
+<view>---------组件通讯--------</view>
+<my-test5 count="{{count}}" bind:sync="syncCount" class="childA"></my-test5>
+<view>-----------------------</view>
+<view>父组件count值是： {{count}}</view>
+<button bindtap="getChild">获取子组件实例</button>
+

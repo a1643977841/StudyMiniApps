@@ -1,1 +1,5 @@
 <button bindtap="addCount">+1</button>
+<view>count的值：{{count}}</view>
+<button bindtap="showInfo">显示标签属性值(properties)</button>
+
+<view>max的属性值：{{max}}</view>
