@@ -5,7 +5,7 @@ import App from './App'
 // 导入网络请求的包
 import { $http } from '@escook/request-miniprogram';
 // 设置请求根路径
-$http.baseUrl = 'https://www.uniav.com'
+$http.baseUrl = 'http://api-hmugo-web.itheima.net'
 // 请求拦截器
 $http.beforeRequest = function(options) {
   // 加载loading

@@ -1,6 +1,6 @@
 <template>
   <view>
-    <image src="/full/none.jpg"></image>
+    
   </view>
 </template>
 
