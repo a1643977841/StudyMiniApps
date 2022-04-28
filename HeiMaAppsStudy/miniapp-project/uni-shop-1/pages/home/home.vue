@@ -1,5 +1,9 @@
 <template>
   <view>
+    <!-- 使用自定义搜索组件 -->
+    <view class="search-box">
+      <my-search @click="goToSearch()"></my-search>
+    </view>
     <!-- 轮播图区域 -->
     <view>
       <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
@@ -57,6 +61,14 @@ export default {
     this.getFloorList();
   },
   methods: {
+    /**
+     * 去搜索页面
+     */
+    goToSearch() {
+      uni.navigateTo({
+        url: '/subpkg/search/search'
+      })
+    },
     /**
      * 分类导航click事件处理函数
      */
@@ -146,5 +158,11 @@ swiper {
 .floor-img-box {
   display: flex;
   padding-left: 10rpx;
+}
+.search-box {
+  // 将定位设计为吸顶
+  position: sticky;
+  top: 0;
+  z-index: 9999;
 }
 </style>

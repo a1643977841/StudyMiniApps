@@ -1,5 +1,7 @@
 <template>
   <view>
+    <!-- 使用自定义的搜索组件 -->
+    <my-search @click="goToSearch()"></my-search>
     <view class="scroll-view-container">
       <!-- 左侧滑动区域 -->
       <scroll-view class="left-scroll-view" scroll-y="true" :style="{ height: wh + 'px' }">
@@ -41,11 +43,19 @@ export default {
   onLoad() {
     // 获取手机信息
     const sysInfo = uni.getSystemInfoSync();
-    this.wh = sysInfo.windowHeight;
+    this.wh = sysInfo.windowHeight - 50;
     // 获取分类数据
     this.getCateList();
   },
   methods: {
+    /**
+     * 去搜索页面
+     */
+    goToSearch() {
+      uni.navigateTo({
+        url: '/subpkg/search/search'
+      })
+    },
     /**
      * 跳转商品列表界面
      */
