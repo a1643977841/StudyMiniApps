@@ -24,14 +24,14 @@
         </view>
         <view class="floor-img-box">
           <!-- 楼层左侧大图片 -->
-          <navigator class="left-img-box" url="/subpkg/goods_list/goods_list?query=1">
+          <view class="left-img-box">
             <image :src="item.product_list[0].image_src" style="width: 230rpx;" mode="widthFix"></image>
-          </navigator>
+          </view>
           <!-- 右侧四个图片 -->
           <view class="right-img-box">
-            <view class="right-img-item" v-for="(item2, i2) in item.product_list" :key="i2" v-if="i2 !== 0">
+            <navigator class="right-img-item" v-for="(item2, i2) in item.product_list" :key="i2" v-if="i2 !== 0" url="/subpkg/goods_list/goods_list?query=1">
               <image :src="item2.image_src" mode="widthFix" style="width: 230rpx;"></image>
-            </view>
+            </navigator>
           </view>
         </view>
       </view>
@@ -66,7 +66,7 @@ export default {
     navClickHandler(item) {
       if (item.name === '分类') {
         uni.switchTab({
-          url: '/pages/cart/cart'
+          url: '/pages/cate/cate'
         });
       }
     },
