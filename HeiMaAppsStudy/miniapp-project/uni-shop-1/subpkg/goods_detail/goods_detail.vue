@@ -12,9 +12,7 @@
       <!-- 商品主体区域 -->
       <view class="goods-info-body">
         <!-- 商品名称 -->
-        <view class="goods-name">
-          {{goodsInfo.goods_name}}
-        </view>
+        <view class="goods-name">{{ goodsInfo.goods_name }}</view>
         <!-- 收藏 -->
         <view class="favi">
           <uni-icons type="star" size="18" color="gray"></uni-icons>
@@ -22,9 +20,7 @@
         </view>
       </view>
       <!-- 运费 -->
-      <view class="yf">
-        快递：免运费
-      </view>
+      <view class="yf">快递：免运费</view>
     </view>
     <!-- 富文本区域 -->
     <rich-text :nodes="goodsInfo.goods_introduce"></rich-text>
@@ -43,10 +39,11 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      goodsInfo: {} ,// 商品详情对象
+      goodsInfo: {}, // 商品详情对象
       // 商品左侧导航组件
       options: [
         {
@@ -56,7 +53,7 @@ export default {
         {
           icon: 'cart',
           text: '购物车',
-          info: 9
+          info: 0
         }
       ],
       // 商品右侧导航组件
@@ -70,18 +67,40 @@ export default {
           text: '立即购买',
           backgroundColor: '#ffa200',
           color: '#fff'
-        },
+        }
       ]
-    };
+    }
+  },
+  computed: {
+    // 调用mapState方法，把m_cart模块中的cart数组映射到当前页面中，作为计算属性来使用
+    // ...mapState('模块的名称', ['要映射的数据名称1', '要映射的数据名称2'])...mapState('m_cart', ['cart']),
+    ...mapGetters('m_cart', ['total'])
+    //今后无论映射 mutations 方法，还是 getters 属性，还是 state 中的数据，都需要指定模块的名称，才能进行映射。
+  },
+  watch: {
+    // 监听total变化
+    total: {
+      handler(newVal) {
+        // 通过数组的find() 方法找到购物车按钮的配置对象
+        const findResult = this.options.find(x => x.text === '购物车')
+        if (findResult) {
+          // 动态为购物车按钮的info属性赋值
+          findResult.info = newVal
+        }
+      },
+      // 为true代表页面初次加载完毕就会调用
+      immediate: true
+    }
   },
   methods: {
+    // 映射添加购物车方法
+    ...mapMutations('m_cart', ['addToCart']),
     /**
      * 商品导航组件左侧点击事件处理函数
      */
     onClick(e) {
       // 点击的是购物车，跳转购物车页面
-      console.log(e.content.text === '购物车')
-      if(e.content.text === '购物车') {
+      if (e.content.text === '购物车') {
         uni.switchTab({
           url: '/pages/cart/cart'
         })
@@ -91,7 +110,20 @@ export default {
      * 商品导航组件右侧点击事件处理函数
      */
     buttonClick(e) {
-      console.log(e)
+      // 是点击的加入购物车
+      if (e.content.text === '加入购物车') {
+        // 创建一个商品对象
+        const goods = {
+          goods_id: this.goodsInfo.goods_id, // 商品id
+          goods_name: this.goodsInfo.goods_name, // 商品名称
+          goods_price: this.goodsInfo.goods_price, // 商品价格
+          goods_count: 1, // 商品数量
+          goods_small_logo: this.goodsInfo.goods_small_logo, // 商品图片
+          goods_state: true // 商品勾选状态
+        }
+        // 通过this调用映射的addToCart方法 把商品信息对象存储到购物车中
+        this.addToCart(goods)
+      }
     },
     /**
      * 大图片预览
@@ -100,28 +132,27 @@ export default {
       uni.previewImage({
         current: i,
         urls: this.goodsInfo.pics.map(x => x.pics_big)
-      });
+      })
     },
     /**
      * 获取商品详情信息
      * @param {Object} goodsId 商品id
      */
     async getGoodsDetail(goodsId) {
-      console.log(goodsId);
-      const { data: res } = await uni.$http.get('/api/public/v1/goods/detail', { goods_id: goodsId });
-      if (res.meta.status !== 200) return uni.$showMsg(res.meta.msg, 1500);
+      const { data: res } = await uni.$http.get('/api/public/v1/goods/detail', { goods_id: goodsId })
+      if (res.meta.status !== 200) return uni.$showMsg(res.meta.msg, 1500)
       // 替换富文本区域的img标签，为img添加样式
       res.message.goods_introduce = res.message.goods_introduce.replace(/<img /g, '<img style="display: block;" ').replace(/webp/g, 'jpg')
-      this.goodsInfo = res.message;
+      this.goodsInfo = res.message
     }
   },
   onLoad(options) {
     // 获取商品id
-    const goodsId = options.goods_id;
+    const goodsId = options.goods_id
     // 获取商品详情数据
-    this.getGoodsDetail(goodsId);
+    this.getGoodsDetail(goodsId)
   }
-};
+}
 </script>
 
 <style lang="scss">
@@ -136,14 +167,14 @@ swiper {
   padding: 10px;
   padding-right: 0;
   .price {
-    color: #C00000;
+    color: #c00000;
     font-size: 18px;
     margin: 10px 0;
   }
   .goods-info-body {
     display: flex;
     justify-content: space-between;
-    
+
     .goods-name {
       font-size: 13px;
       margin-right: 10px;
@@ -172,6 +203,6 @@ swiper {
   width: 100%;
 }
 .goods-detail-container {
-  padding-bottom: 50px; 
+  padding-bottom: 50px;
 }
 </style>
