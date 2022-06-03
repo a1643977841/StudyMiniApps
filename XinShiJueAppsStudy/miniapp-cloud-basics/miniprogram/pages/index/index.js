@@ -14,6 +14,7 @@ Page({
     // let title = res.detail.value.title
     // let author = res.detail.value.author
     // let content = res.detail.value.content
+    let tabsData = ['数码', '智能', '科技', '电子', '财经', '网络', '置顶', '平板']
     let { title, author, content } = res.detail.value
     db.collection('demolist')
       .add({
@@ -21,10 +22,13 @@ Page({
         data: {
           title: title,
           author: author,
-          content: content
+          content: content,
+          date: new Date(),
+          hibs: Math.round(Math.random() * 1000),
+          tabs: [tabsData[Math.round(Math.random() * tabsData.length)], tabsData[Math.round(Math.random() * tabsData.length)]]
         }
       })
-      .then((res) => {
+      .then(res => {
         // 返回的插入的成功后的数据id
         console.log(res)
       })
@@ -41,7 +45,7 @@ Page({
           content: '测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容'
         }
       })
-      .then((res) => {
+      .then(res => {
         // 返回的插入的成功后的数据id
         console.log(res)
       })
@@ -61,7 +65,7 @@ Page({
         author: '阿浩'
       })
       .get()
-      .then((res) => {
+      .then(res => {
         console.log(res)
       })
   },

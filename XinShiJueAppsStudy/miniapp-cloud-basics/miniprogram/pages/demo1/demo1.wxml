@@ -2,3 +2,7 @@
 <button type="primary" bindtap="uodateById">根据id更新一条数据</button>
 -----------
 <button type="primary" bindtap="removeById">根据id删除一条数据</button>
+-----------
+<button type="primary" bindtap="count">获取记录数</button>
+
+<view wx:for="{{dataArr}}" wx:key="index">{{item.title}}</view>

@@ -1,0 +1,4 @@
+<view class="row">
+  <view class="title">这是我们的标题</view>
+  <view>这是点击次数</view>
+</view>
