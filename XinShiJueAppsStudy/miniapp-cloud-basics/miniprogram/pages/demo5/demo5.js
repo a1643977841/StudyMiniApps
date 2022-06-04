@@ -3,15 +3,48 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {},
-  getData() {
+  data: {
+    dataList: []
+  },
+  /**
+   * 点击阅读量增加7
+   */
+  clickRow(res) {
+    const { id, idx } = res.currentTarget.dataset
     wx.cloud
       .callFunction({
-        name: 'demo5GetData'
+        name: 'demo5UptData',
+        data: {
+          id: id
+        }
+      })
+      .then(res => {
+        this.setData({
+          dataList: []
+        })
+        this.getData(6, 0)
+      })
+  },
+  getData(num = 6, page = 0) {
+    wx.showLoading({
+      title: '数据加载中',
+      mask: true
+    })
+    wx.cloud
+      .callFunction({
+        name: 'demo5GetData',
+        data: {
+          num: num,
+          page: page
+        }
       })
       .then(res => {
         console.log('云调用')
         console.log(res)
+        this.setData({
+          dataList: [...this.data.dataList, ...res.result.data]
+        })
+        wx.hideLoading()
       })
   },
   /**
@@ -49,7 +82,10 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {},
+  onReachBottom() {
+    let page = this.data.dataList.length
+    this.getData(6, page)
+  },
 
   /**
    * 用户点击右上角分享

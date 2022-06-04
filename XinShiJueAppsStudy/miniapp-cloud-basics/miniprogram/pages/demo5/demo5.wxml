@@ -1,4 +1,6 @@
-<view class="row">
-  <view class="title">这是我们的标题</view>
-  <view>这是点击次数</view>
+<view>
+  <view bindtap="clickRow" data-id="{{item._id}}" data-idx="{{index}}" wx:for="{{dataList}}" wx:key="index" class="row">
+    <view class="title">{{item.title}}</view>
+    <view>{{item.hits}}</view>
+  </view>
 </view>
